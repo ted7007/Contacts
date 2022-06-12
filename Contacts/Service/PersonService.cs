@@ -34,6 +34,7 @@ namespace Contacts.Service
                 workplace = argument.workplace
             };
             var result = db.Add(person).Entity;
+            db.SaveChanges();
             return result;
         }
 

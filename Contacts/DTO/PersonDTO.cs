@@ -7,7 +7,7 @@ namespace Contacts.DTO
 {
     public class PersonDTO
     {
-        public int id { get; set; }
+        public int? id { get; set; }
 
         public string firstName { get; set; }
 
@@ -21,7 +21,7 @@ namespace Contacts.DTO
 
         public DateTime birthday { get; set; }
 
-        public string Email { get; set; }
+        public string email { get; set; }
 
         public string VKLink { get; set; }
 
@@ -32,5 +32,32 @@ namespace Contacts.DTO
         public string placeOfStudy { get; set; }
 
         public string workplace { get; set; }
+
+        public static bool isValid(PersonDTO dto)
+        {
+            if (string.IsNullOrEmpty(dto.firstName))
+                return false;
+            if (string.IsNullOrEmpty(dto.lastName))
+                return false;
+            if (string.IsNullOrEmpty(dto.middleName))
+                return false;
+            if (string.IsNullOrEmpty(dto.sex))
+                return false;
+            if (string.IsNullOrEmpty(dto.phoneNumber))
+                return false;
+            if (string.IsNullOrEmpty(dto.email))
+                return false;
+            if (string.IsNullOrEmpty(dto.VKLink))
+                return false;
+            if (string.IsNullOrEmpty(dto.discord))
+                return false;
+            if (string.IsNullOrEmpty(dto.address))
+                return false;
+            if (string.IsNullOrEmpty(dto.placeOfStudy))
+                return false;
+            if (string.IsNullOrEmpty(dto.workplace))
+                return false;
+            return true;
+        }
     }
 }

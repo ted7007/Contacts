@@ -18,7 +18,7 @@ namespace Contacts.Mapper
                 lastName = dto.lastName,
                 middleName = dto.middleName,
                 phoneNumber = dto.phoneNumber,
-                Email = dto.Email,
+                Email = dto.email,
                 placeOfStudy = dto.placeOfStudy,
                 discord = dto.discord,
                 address = dto.address,
@@ -49,11 +49,12 @@ namespace Contacts.Mapper
         {
             var result = new PersonDTO()
             {
+                id = person.id,
                 firstName = person.firstName,
                 lastName = person.lastName,
                 middleName = person.middleName,
                 phoneNumber = person.phoneNumber,
-                Email = person.Email,
+                email = person.Email,
                 placeOfStudy = person.placeOfStudy,
                 discord = person.discord,
                 address = person.address,

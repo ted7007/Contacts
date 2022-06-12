@@ -18,6 +18,7 @@ namespace Contacts.Controller
         public PersonController(IPersonService service)
         {
             db = service;
+            mapper = new PersonMapper();
         }
 
 
