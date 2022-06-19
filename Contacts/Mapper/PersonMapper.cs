@@ -44,6 +44,41 @@ namespace Contacts.Mapper
             return result;
 
         }
+
+        public Person DTOToEntity(PersonDTO dto)
+        {
+            var result = new Person()
+            {
+                id = dto.id,
+                firstName = dto.firstName,
+                lastName = dto.lastName,
+                middleName = dto.middleName,
+                phoneNumber = dto.phoneNumber,
+                Email = dto.email,
+                placeOfStudy = dto.placeOfStudy,
+                discord = dto.discord,
+                address = dto.address,
+                birthday = dto.birthday,
+                VKLink = dto.VKLink,
+                workplace = dto.workplace
+
+            };
+            Sex sex = Sex.BatleHelicopter;
+            switch (dto.sex)
+            {
+                case "Male":
+                    sex = Sex.Male;
+                    break;
+                case "Female":
+                    sex = Sex.Female;
+                    break;
+                case "Batle Helicopter":
+                    sex = Sex.BatleHelicopter;
+                    break;
+            }
+            result.sex = sex;
+            return result;
+        }
         
         public PersonDTO EntityToDTO(Person person)
         {

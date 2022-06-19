@@ -48,9 +48,38 @@ namespace Contacts.Service
             return db.Persons.ToList();
         }
 
-        public Person update()
+        public IEnumerable<Person> find(Person person)
         {
-            throw new NotImplementedException();
+            var persons = db.Persons.Where(p =>
+            ((person.firstName == null || person.firstName.ToLower() == p.firstName.ToLower())
+            && (person.id == null || person.id == p.id)
+            && (person.lastName == null || person.lastName.ToLower() == p.lastName.ToLower())
+            && (person.middleName == null || person.lastName.ToLower() == p.lastName.ToLower())
+            && (person.address == null || person.address.ToLower() == p.address.ToLower())
+            && (person.discord == null || person.discord.ToLower() == p.discord.ToLower())
+            && (person.birthday == default(DateTime) || person.birthday == p.birthday)
+            && (person.VKLink == null || person.VKLink.ToLower() == p.VKLink.ToLower())
+            && (person.Email == null || person.Email.ToLower() == p.Email.ToLower())
+            && (person.placeOfStudy == null || person.placeOfStudy.ToLower() == p.placeOfStudy.ToLower())
+            && (person.workplace == null || person.workplace.ToLower() == p.workplace.ToLower())
+            && (person.phoneNumber == null || person.phoneNumber.ToLower() == p.phoneNumber.ToLower())
+            && (person.sex == default(Sex) || person.sex == p.sex)
+            )).ToList();
+            return persons;
         }
+        
+        public Person update(Person person)
+        {
+            var result = db.Update(person).Entity;
+            db.SaveChanges();
+            return result;
+        }
+
+        public void delete(int? id)
+        {
+            db.Persons.Remove(find(id));
+            db.SaveChanges();
+        }
+
     }
 }

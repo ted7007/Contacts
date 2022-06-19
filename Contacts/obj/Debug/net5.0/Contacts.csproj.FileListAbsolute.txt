@@ -5,7 +5,6 @@ C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Contacts.deps.jso
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Contacts.runtimeconfig.json
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Contacts.runtimeconfig.dev.json
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Contacts.dll
-C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\ref\Contacts.dll
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Contacts.pdb
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
@@ -28,3 +27,4 @@ C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\Contacts.dll
 C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\ref\Contacts.dll
 C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\Contacts.pdb
 C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\Contacts.genruntimeconfig.cache
+C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\refint\Contacts.dll

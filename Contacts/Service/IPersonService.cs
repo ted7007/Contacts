@@ -12,8 +12,12 @@ namespace Contacts.Service
 
         public Person find(int? id);
 
+        public IEnumerable<Person> find(Person person);
+
         public Person create(CreationPersonArgument argument);
 
-        public Person update();
+        public Person update(Person person);
+
+        public void delete(int? id);
     }
 }
