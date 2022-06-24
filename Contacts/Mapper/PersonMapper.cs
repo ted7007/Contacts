@@ -27,7 +27,7 @@ namespace Contacts.Mapper
                 workplace = dto.workplace
 
             };
-            Sex sex = Sex.BatleHelicopter;
+            Sex sex = Sex.BattleHelicopter;
             switch (dto.sex)
             {
                 case "Male":
@@ -37,7 +37,7 @@ namespace Contacts.Mapper
                     sex = Sex.Female;
                     break;
                 case "Batle Helicopter":
-                    sex = Sex.BatleHelicopter;
+                    sex = Sex.BattleHelicopter;
                     break;
             }
             result.sex = sex;
@@ -63,7 +63,7 @@ namespace Contacts.Mapper
                 workplace = dto.workplace
 
             };
-            Sex sex = Sex.BatleHelicopter;
+            Sex sex = Sex.BattleHelicopter;
             switch (dto.sex)
             {
                 case "Male":
@@ -72,8 +72,8 @@ namespace Contacts.Mapper
                 case "Female":
                     sex = Sex.Female;
                     break;
-                case "Batle Helicopter":
-                    sex = Sex.BatleHelicopter;
+                case "Battle Helicopter":
+                    sex = Sex.BattleHelicopter;
                     break;
             }
             result.sex = sex;
@@ -107,11 +107,32 @@ namespace Contacts.Mapper
                 case Sex.Female:
                     sex = "Female";
                     break;
-                case Sex.BatleHelicopter:
-                    sex = "Batle Helicopter";
+                case Sex.BattleHelicopter:
+                    sex = "Battle Helicopter";
                     break;
             }
             result.sex = sex;
+            return result;
+        }
+
+        public PersonSortState stringToPersonSortState(string value)
+        {
+            PersonSortState result = value switch
+            {
+                "firstNameAscending" => result = PersonSortState.firstNameAscending,
+                "firstNameDescending" => result = PersonSortState.firstNameDescending,
+                "lastNameAscending" => result = PersonSortState.lastNameAscending,
+                "lastNameDescending" => result = PersonSortState.lastNameDescending,
+                "middleNameAscending" => result = PersonSortState.middleNameAscending,
+                "middleNameDescending" => result = PersonSortState.middleNameDescending,
+                "birthdayAscending" => result = PersonSortState.birthdayAscending,
+                "birthdayDescending" => result = PersonSortState.birthdayDescending,
+                "placeOfStudyAscending" => result = PersonSortState.placeOfStudyAscending,
+                "placeOfStudyDescendin" => result = PersonSortState.placeOfStudyDescending,
+                "workplaceAscending" => result = PersonSortState.workplaceAscending,
+                "workplaceDescending" => result = PersonSortState.workplaceDescending,
+                _ => result = PersonSortState.firstNameAscending
+            };
             return result;
         }
     }

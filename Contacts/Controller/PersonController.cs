@@ -35,7 +35,10 @@ namespace Contacts.Controller
         [HttpGet("{id}")]
         public ActionResult find(int id)
         {
-            return Ok(mapper.EntityToDTO(db.find(id)));
+            var result = db.find(id);
+            if (result is null)
+                return BadRequest($"No person with id: {id}");
+            return Ok(mapper.EntityToDTO(result));
         }
 
         [HttpGet("find")]
@@ -73,16 +76,31 @@ namespace Contacts.Controller
         [HttpPut]
         public IActionResult update(PersonDTO dto)
         {
+            if (dto.id is null)
+                return BadRequest("No id in request.");
+            var user = db.find(dto.id);
+            if (user == null)
+                return BadRequest($"Person with id: {dto.id} is not found");
             return Ok(db.update(mapper.DTOToEntity(dto)));
         }
 
         [HttpDelete("{id}")]
         public IActionResult delete(int? id)
         {
+            var user = db.find(id);
+            if (user == null)
+                return BadRequest($"Person with id: {id} is not found");
             db.delete(id);
             return Ok();
         }
 
+        [HttpGet("sort")]
+        public IActionResult sort(string sortState)
+        {
+            var result = db.findAllAndSort(mapper.stringToPersonSortState(sortState));
+            return Ok(result);
+        }
 
+        // todo: сортировка, ошибки, чекать докер
     }
 }
