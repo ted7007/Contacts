@@ -7,7 +7,7 @@ namespace Contacts.Model
 {
     public enum Sex
     {
-        BatleHelicopter,
+        BattleHelicopter,
         Male,
         Female
         

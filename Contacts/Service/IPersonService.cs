@@ -10,6 +10,8 @@ namespace Contacts.Service
     {
         public IEnumerable<Person> findAll();
 
+        public IEnumerable<Person> findAllAndSort(PersonSortState state);
+
         public Person find(int? id);
 
         public IEnumerable<Person> find(Person person);

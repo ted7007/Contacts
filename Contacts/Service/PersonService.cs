@@ -48,6 +48,28 @@ namespace Contacts.Service
             return db.Persons.ToList();
         }
 
+        public IEnumerable<Person> findAllAndSort(PersonSortState state)
+        {
+            var result = db.Persons.ToList();
+            result = state switch
+            {
+                PersonSortState.birthdayAscending => result.OrderBy(p => p.birthday).ToList(),
+                PersonSortState.birthdayDescending => result.OrderByDescending(p => p.birthday).ToList(),
+                PersonSortState.firstNameAscending => result.OrderBy(p => p.firstName).ToList(),
+                PersonSortState.firstNameDescending => result.OrderByDescending(p => p.firstName).ToList(),
+                PersonSortState.lastNameAscending => result.OrderBy(p => p.lastName).ToList(),
+                PersonSortState.lastNameDescending => result.OrderByDescending(p => p.lastName).ToList(),
+                PersonSortState.middleNameAscending => result.OrderBy(p => p.middleName).ToList(),
+                PersonSortState.middleNameDescending => result.OrderByDescending(p => p.middleName).ToList(),
+                PersonSortState.placeOfStudyAscending => result.OrderBy(p => p.placeOfStudy).ToList(),
+                PersonSortState.placeOfStudyDescending => result.OrderBy(p => p.placeOfStudy).ToList(),
+                PersonSortState.workplaceAscending => result.OrderBy(p => p.workplace).ToList(),
+                PersonSortState.workplaceDescending => result.OrderBy(p => p.workplace).ToList(),
+                _ => result.OrderBy(p => p.firstName).ToList(),
+            };
+            return result;
+        }
+
         public IEnumerable<Person> find(Person person)
         {
             var persons = db.Persons.Where(p =>
@@ -68,6 +90,8 @@ namespace Contacts.Service
             return persons;
         }
         
+
+
         public Person update(Person person)
         {
             var result = db.Update(person).Entity;
