@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Contacts.Controller.util;
 using Contacts.DTO;
 using Contacts.Model;
+using Contacts.Service.util;
 
 namespace Contacts.Controller.Mapper
 {

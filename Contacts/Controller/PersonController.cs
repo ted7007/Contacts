@@ -95,13 +95,5 @@ namespace Contacts.Controller
             return Ok();
         }
 
-        //[HttpGet("find")]
-        //public IActionResult sort(string sortState)
-        //{
-        //    var result = db.findAllAndSort(mapper.stringToPersonSortState(sortState));
-        //    return Ok(result);
-        //}
-
-        // todo: сортировка, ошибки, чекать докер
     }
 }

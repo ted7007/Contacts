@@ -1,5 +1,6 @@
 ﻿using Contacts.Controller.util;
 using Contacts.Model;
+using Contacts.Service.util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
