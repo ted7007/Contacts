@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Contacts.Controller.util;
 using Contacts.DTO;
 using Contacts.Model;
 
-namespace Contacts.Mapper
+namespace Contacts.Controller.Mapper
 {
-    public class PersonMapper
+    public class PersonMapper : IPersonMapper
     {
-        
+
         public CreationPersonArgument DTOToCreationArgument(PersonDTO dto)
         {
             var result = new CreationPersonArgument()
@@ -45,6 +46,42 @@ namespace Contacts.Mapper
 
         }
 
+        public UpdatingPersonArgument DTOToUpdatingArgument(PersonDTO dto)
+        {
+            var result = new UpdatingPersonArgument()
+            {
+                id = dto.id,
+                firstName = dto.firstName,
+                lastName = dto.lastName,
+                middleName = dto.middleName,
+                phoneNumber = dto.phoneNumber,
+                Email = dto.email,
+                placeOfStudy = dto.placeOfStudy,
+                discord = dto.discord,
+                address = dto.address,
+                birthday = dto.birthday,
+                VKLink = dto.VKLink,
+                workplace = dto.workplace
+
+            };
+            Sex sex = Sex.BattleHelicopter;
+            switch (dto.sex.ToLower())
+            {
+                case "male":
+                    sex = Sex.Male;
+                    break;
+                case "female":
+                    sex = Sex.Female;
+                    break;
+                case "batle helicopter":
+                    sex = Sex.BattleHelicopter;
+                    break;
+            }
+            result.sex = sex;
+            return result;
+
+        }
+
         public Person DTOToEntity(PersonDTO dto)
         {
             var result = new Person()
@@ -64,22 +101,22 @@ namespace Contacts.Mapper
 
             };
             Sex sex = Sex.BattleHelicopter;
-            switch (dto.sex)
+            switch (dto.sex.ToLower())
             {
-                case "Male":
+                case "male":
                     sex = Sex.Male;
                     break;
-                case "Female":
+                case "female":
                     sex = Sex.Female;
                     break;
-                case "Battle Helicopter":
+                case "battle helicopter":
                     sex = Sex.BattleHelicopter;
                     break;
             }
             result.sex = sex;
             return result;
         }
-        
+
         public PersonDTO EntityToDTO(Person person)
         {
             var result = new PersonDTO()
@@ -99,7 +136,7 @@ namespace Contacts.Mapper
 
             };
             string sex = "";
-            switch(person.sex)
+            switch (person.sex)
             {
                 case Sex.Male:
                     sex = "Male";
@@ -115,25 +152,7 @@ namespace Contacts.Mapper
             return result;
         }
 
-        public PersonSortState stringToPersonSortState(string value)
-        {
-            PersonSortState result = value switch
-            {
-                "firstNameAscending" => result = PersonSortState.firstNameAscending,
-                "firstNameDescending" => result = PersonSortState.firstNameDescending,
-                "lastNameAscending" => result = PersonSortState.lastNameAscending,
-                "lastNameDescending" => result = PersonSortState.lastNameDescending,
-                "middleNameAscending" => result = PersonSortState.middleNameAscending,
-                "middleNameDescending" => result = PersonSortState.middleNameDescending,
-                "birthdayAscending" => result = PersonSortState.birthdayAscending,
-                "birthdayDescending" => result = PersonSortState.birthdayDescending,
-                "placeOfStudyAscending" => result = PersonSortState.placeOfStudyAscending,
-                "placeOfStudyDescendin" => result = PersonSortState.placeOfStudyDescending,
-                "workplaceAscending" => result = PersonSortState.workplaceAscending,
-                "workplaceDescending" => result = PersonSortState.workplaceDescending,
-                _ => result = PersonSortState.firstNameAscending
-            };
-            return result;
-        }
+
+
     }
 }

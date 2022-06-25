@@ -1,4 +1,5 @@
-﻿using Contacts.Model;
+﻿using Contacts.Controller.util;
+using Contacts.Model;
 using Contacts.Repository;
 using System;
 using System.Collections.Generic;
@@ -40,12 +41,9 @@ namespace Contacts.Service
 
         public Person find(int? id)
         {
+            if (!db.Persons.Any(p => p.id == id))
+                throw new KeyNotFoundException($"No person with id:{id}");
             return db.Persons.Find(id);
-        }
-
-        public IEnumerable<Person> findAll()
-        {
-            return db.Persons.ToList();
         }
 
         public IEnumerable<Person> findAllAndSort(PersonSortState state)
@@ -92,15 +90,35 @@ namespace Contacts.Service
         
 
 
-        public Person update(Person person)
+        public Person update(UpdatingPersonArgument argument)
         {
+            if (!db.Persons.Any(p => p.id == argument.id))
+                throw new KeyNotFoundException($"No person with id:{argument.id}");
+
+            Person person = new Person()
+            {
+                firstName = argument.firstName,
+                lastName = argument.lastName,
+                middleName = argument.middleName,
+                phoneNumber = argument.phoneNumber,
+                Email = argument.Email,
+                placeOfStudy = argument.placeOfStudy,
+                discord = argument.discord,
+                address = argument.address,
+                birthday = argument.birthday,
+                sex = argument.sex,
+                VKLink = argument.VKLink,
+                workplace = argument.workplace
+            };
             var result = db.Update(person).Entity;
             db.SaveChanges();
             return result;
         }
 
-        public void delete(int? id)
+        public void deleteById(int? id)
         {
+            if (!db.Persons.Any(p => p.id == id))
+                throw new KeyNotFoundException($"No person with id:{id}");
             db.Persons.Remove(find(id));
             db.SaveChanges();
         }

@@ -1,4 +1,4 @@
-﻿namespace Contacts.Model
+﻿namespace Contacts.Controller.util
 {
     public enum PersonSortState
     {

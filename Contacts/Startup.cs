@@ -1,3 +1,4 @@
+using Contacts.Controller.Mapper;
 using Contacts.Repository;
 using Contacts.Service;
 using Microsoft.AspNetCore.Builder;
@@ -50,6 +51,7 @@ namespace Contacts
             
             
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonMapper, PersonMapper>();
 
 
             services.AddMvc();

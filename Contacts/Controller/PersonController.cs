@@ -1,5 +1,6 @@
-﻿using Contacts.DTO;
-using Contacts.Mapper;
+﻿using Contacts.Controller.Mapper;
+using Contacts.Controller.util;
+using Contacts.DTO;
 using Contacts.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,20 +16,20 @@ namespace Contacts.Controller
     {
         private IPersonService db;
 
-        public PersonController(IPersonService service)
+        private IPersonMapper mapper;
+
+        public PersonController(IPersonService service, IPersonMapper mapper)
         {
             db = service;
-            mapper = new PersonMapper();
+            this.mapper = mapper;
         }
 
-
-        private PersonMapper mapper;
-
         [HttpGet]
-        public ActionResult findAll()
+        public ActionResult findAll(PersonSortState sortState)
         {
+            
             var result = new List<PersonDTO>();
-            db.findAll().ToList().ForEach(p => result.Add(mapper.EntityToDTO(p)));
+            db.findAllAndSort(sortState).ToList().ForEach(p => result.Add(mapper.EntityToDTO(p)));
             return Ok(result);
         }
 
@@ -76,12 +77,12 @@ namespace Contacts.Controller
         [HttpPut]
         public IActionResult update(PersonDTO dto)
         {
-            if (dto.id is null)
-                return BadRequest("No id in request.");
-            var user = db.find(dto.id);
-            if (user == null)
+            //if (dto.id is null)
+            //    return BadRequest("No id in request.");
+            //var user = db.find(dto.id);
+           // if (user == null)
                 return BadRequest($"Person with id: {dto.id} is not found");
-            return Ok(db.update(mapper.DTOToEntity(dto)));
+            return Ok(db.update(mapper.DTOToUpdatingArgument(dto)));
         }
 
         [HttpDelete("{id}")]
@@ -90,16 +91,16 @@ namespace Contacts.Controller
             var user = db.find(id);
             if (user == null)
                 return BadRequest($"Person with id: {id} is not found");
-            db.delete(id);
+            db.deleteById(id);
             return Ok();
         }
 
-        [HttpGet("sort")]
-        public IActionResult sort(string sortState)
-        {
-            var result = db.findAllAndSort(mapper.stringToPersonSortState(sortState));
-            return Ok(result);
-        }
+        //[HttpGet("find")]
+        //public IActionResult sort(string sortState)
+        //{
+        //    var result = db.findAllAndSort(mapper.stringToPersonSortState(sortState));
+        //    return Ok(result);
+        //}
 
         // todo: сортировка, ошибки, чекать докер
     }

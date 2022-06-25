@@ -1,4 +1,5 @@
-﻿using Contacts.Model;
+﻿using Contacts.Controller.util;
+using Contacts.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,6 @@ namespace Contacts.Service
 {
     public interface IPersonService
     {
-        public IEnumerable<Person> findAll();
 
         public IEnumerable<Person> findAllAndSort(PersonSortState state);
 
@@ -18,8 +18,8 @@ namespace Contacts.Service
 
         public Person create(CreationPersonArgument argument);
 
-        public Person update(Person person);
+        public Person update(UpdatingPersonArgument person);
 
-        public void delete(int? id);
+        public void deleteById(int? id);
     }
 }
