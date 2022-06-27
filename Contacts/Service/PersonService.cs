@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 ﻿using Contacts.Model;
 using Contacts.Repository;
+=======
+﻿using Contacts.Controller.util;
+using Contacts.Model;
+using Contacts.Repository;
+using Contacts.Service.util;
+>>>>>>> real-feauture2
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,6 +47,7 @@ namespace Contacts.Service
 
         public Person find(int? id)
         {
+<<<<<<< HEAD
             return db.Persons.Find(id);
         }
 
@@ -48,6 +56,13 @@ namespace Contacts.Service
             return db.Persons.ToList();
         }
 
+=======
+            if (!db.Persons.Any(p => p.id == id))
+                throw new KeyNotFoundException($"No person with id:{id}");
+            return db.Persons.Find(id);
+        }
+
+>>>>>>> real-feauture2
         public IEnumerable<Person> findAllAndSort(PersonSortState state)
         {
             var result = db.Persons.ToList();
@@ -92,15 +107,45 @@ namespace Contacts.Service
         
 
 
+<<<<<<< HEAD
         public Person update(Person person)
         {
+=======
+        public Person update(UpdatingPersonArgument argument)
+        {
+            if (!db.Persons.Any(p => p.id == argument.id))
+                throw new KeyNotFoundException($"No person with id:{argument.id}");
+
+            Person person = new Person()
+            {
+                firstName = argument.firstName,
+                lastName = argument.lastName,
+                middleName = argument.middleName,
+                phoneNumber = argument.phoneNumber,
+                Email = argument.Email,
+                placeOfStudy = argument.placeOfStudy,
+                discord = argument.discord,
+                address = argument.address,
+                birthday = argument.birthday,
+                sex = argument.sex,
+                VKLink = argument.VKLink,
+                workplace = argument.workplace
+            };
+>>>>>>> real-feauture2
             var result = db.Update(person).Entity;
             db.SaveChanges();
             return result;
         }
 
+<<<<<<< HEAD
         public void delete(int? id)
         {
+=======
+        public void deleteById(int? id)
+        {
+            if (!db.Persons.Any(p => p.id == id))
+                throw new KeyNotFoundException($"No person with id:{id}");
+>>>>>>> real-feauture2
             db.Persons.Remove(find(id));
             db.SaveChanges();
         }

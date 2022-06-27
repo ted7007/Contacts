@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+using Contacts.Controller.Mapper;
+>>>>>>> real-feauture2
 using Contacts.Repository;
 using Contacts.Service;
 using Microsoft.AspNetCore.Builder;
@@ -50,6 +54,10 @@ namespace Contacts
             
             
             services.AddScoped<IPersonService, PersonService>();
+<<<<<<< HEAD
+=======
+            services.AddScoped<IPersonMapper, PersonMapper>();
+>>>>>>> real-feauture2
 
 
             services.AddMvc();
