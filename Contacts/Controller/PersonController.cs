@@ -77,11 +77,7 @@ namespace Contacts.Controller
         [HttpPut]
         public IActionResult update(PersonDTO dto)
         {
-            //if (dto.id is null)
-            //    return BadRequest("No id in request.");
-            //var user = db.find(dto.id);
-           // if (user == null)
-                return BadRequest($"Person with id: {dto.id} is not found");
+
             return Ok(db.update(mapper.DTOToUpdatingArgument(dto)));
         }
 
