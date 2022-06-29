@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 using Contacts.Controller.Mapper;
->>>>>>> real-feauture2
 using Contacts.Repository;
 using Contacts.Service;
 using Microsoft.AspNetCore.Builder;
@@ -37,7 +34,7 @@ namespace Contacts
         {
 
             string con = Configuration.GetConnectionString("DefaultConnection");
-
+                                                           
             // устанавливаем контекст данных
             services.AddDbContext<PersonContext>(options => options.UseMySql(con, new MySqlServerVersion(new Version(8,0,24))));
             
@@ -54,10 +51,7 @@ namespace Contacts
             
             
             services.AddScoped<IPersonService, PersonService>();
-<<<<<<< HEAD
-=======
             services.AddScoped<IPersonMapper, PersonMapper>();
->>>>>>> real-feauture2
 
 
             services.AddMvc();
@@ -76,7 +70,6 @@ namespace Contacts
             }
 
             app.UseRouting();
-
 
             app.UseEndpoints(endpoints =>
             {

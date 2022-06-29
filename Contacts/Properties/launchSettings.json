@@ -1,14 +1,10 @@
-<<<<<<< HEAD
-﻿{
-=======
 {
->>>>>>> real-feauture2
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:4602",
-      "sslPort": 44305
+      "applicationUrl": "http://localhost:59069/",
+      "sslPort": 44355
     }
   },
   "profiles": {
@@ -17,21 +13,6 @@
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-<<<<<<< HEAD
-      }
-    },
-    "Contacts": {
-      "commandName": "Project",
-      "dotnetRunMessages": "true",
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:4001;http://localhost:4000",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    }
-  }
-}
-=======
       },
       "applicationUrl": "https://localhost:4001;http://localhost:4000"
     },
@@ -54,7 +35,5 @@
       },
       "distributionName": ""
     }
-    
   }
 }
->>>>>>> real-feauture2

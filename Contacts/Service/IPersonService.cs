@@ -1,10 +1,6 @@
-<<<<<<< HEAD
-﻿using Contacts.Model;
-=======
-﻿using Contacts.Controller.util;
+using Contacts.Controller.util;
 using Contacts.Model;
 using Contacts.Service.util;
->>>>>>> real-feauture2
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +10,6 @@ namespace Contacts.Service
 {
     public interface IPersonService
     {
-<<<<<<< HEAD
-        public IEnumerable<Person> findAll();
-=======
->>>>>>> real-feauture2
 
         public IEnumerable<Person> findAllAndSort(PersonSortState state);
 
@@ -27,14 +19,9 @@ namespace Contacts.Service
 
         public Person create(CreationPersonArgument argument);
 
-<<<<<<< HEAD
-        public Person update(Person person);
-
-        public void delete(int? id);
-=======
         public Person update(UpdatingPersonArgument person);
 
         public void deleteById(int? id);
->>>>>>> real-feauture2
+
     }
 }

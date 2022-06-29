@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Contacts.Controller.util;
 using Contacts.DTO;
 using Contacts.Model;
+using Contacts.Service.util;
 
 namespace Contacts.Mapper
 {
@@ -112,27 +114,6 @@ namespace Contacts.Mapper
                     break;
             }
             result.sex = sex;
-            return result;
-        }
-
-        public PersonSortState stringToPersonSortState(string value)
-        {
-            PersonSortState result = value switch
-            {
-                "firstNameAscending" => result = PersonSortState.firstNameAscending,
-                "firstNameDescending" => result = PersonSortState.firstNameDescending,
-                "lastNameAscending" => result = PersonSortState.lastNameAscending,
-                "lastNameDescending" => result = PersonSortState.lastNameDescending,
-                "middleNameAscending" => result = PersonSortState.middleNameAscending,
-                "middleNameDescending" => result = PersonSortState.middleNameDescending,
-                "birthdayAscending" => result = PersonSortState.birthdayAscending,
-                "birthdayDescending" => result = PersonSortState.birthdayDescending,
-                "placeOfStudyAscending" => result = PersonSortState.placeOfStudyAscending,
-                "placeOfStudyDescendin" => result = PersonSortState.placeOfStudyDescending,
-                "workplaceAscending" => result = PersonSortState.workplaceAscending,
-                "workplaceDescending" => result = PersonSortState.workplaceDescending,
-                _ => result = PersonSortState.firstNameAscending
-            };
             return result;
         }
     }
