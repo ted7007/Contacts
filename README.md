@@ -30,6 +30,7 @@ main dto of person that come to responce:
        string workplace 
         
 Also i have enum of sortState (options of sort persons):
+
         firstNameAscending,
         firstNameDescending,
         lastNameAscending,
