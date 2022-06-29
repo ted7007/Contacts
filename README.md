@@ -47,6 +47,8 @@ Also i have enum of sortState (options of sort persons):
         
 using this api you can do all commands of CRUD on this reference:
 http://localhost:4000/api/v1/Person
+
+
 get request: data IN - none; data out - list of dtos of persons; - request for get persons.
 
 get request: data IN - id, using param in api: "/{id}"; data out - dto of persons; - request for get person on id.
