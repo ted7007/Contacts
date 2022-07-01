@@ -15,5 +15,15 @@ namespace Contacts.Repository
         {
             Database.EnsureCreated();
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                .Entity<Person>()
+                .Property(p => p.sex)
+                .HasConversion(
+                v => v.ToString(),
+                v => (Sex)Enum.Parse(typeof(Sex), v));
+        }
     }
 }
