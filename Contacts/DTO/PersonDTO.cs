@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,9 +9,10 @@ namespace Contacts.DTO
     public class PersonDTO
     {
         public int? id { get; set; }
-
+        
         public string firstName { get; set; }
 
+        [Required]
         public string lastName { get; set; }
 
         public string middleName { get; set; }

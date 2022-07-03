@@ -51,7 +51,7 @@ namespace Contacts
             
             
             services.AddScoped<IPersonService, PersonService>();
-            services.AddScoped<IPersonMapper, PersonMapper>();
+            services.AddScoped<IMapper, PersonMapper>();
 
 
             services.AddMvc();

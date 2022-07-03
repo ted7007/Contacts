@@ -2,7 +2,9 @@
 ﻿using Contacts.Controller.Mapper;
 using Contacts.Controller.util;
 using Contacts.DTO;
+using Contacts.Model;
 using Contacts.Service;
+using Contacts.Service.util;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,9 +19,9 @@ namespace Contacts.Controller
     {
         private IPersonService db;
 
-        private IPersonMapper mapper;
+        private IMapper mapper;
 
-        public PersonController(IPersonService service, IPersonMapper mapper)
+        public PersonController(IPersonService service, IMapper mapper)
         {
             db = service;
             this.mapper = mapper;
@@ -30,14 +32,14 @@ namespace Contacts.Controller
         {
             
             var result = new List<PersonDTO>();
-            db.findAllAndSort(sortState).ToList().ForEach(p => result.Add(mapper.EntityToDTO(p)));
+            db.findAllAndSort(sortState).ToList().ForEach(p => result.Add(mapper.Map<Person, PersonDTO>(p)));
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public ActionResult find(int id)
         {
-            return Ok(mapper.EntityToDTO(db.find(id)));
+            return Ok(mapper.Map<Model.Person, PersonDTO>(db.find(id)));
         }
 
         [HttpGet("find")]
@@ -61,22 +63,23 @@ namespace Contacts.Controller
                 workplace = workplace
             };
             List<PersonDTO> result = new List<PersonDTO>();
-            var entity = db.find(mapper.DTOToEntity(dto));
-            entity.ToList().ForEach(p => result.Add(mapper.EntityToDTO(p)));
+            var entity = db.find(mapper.Map<PersonDTO, Model.Person>(dto));
+            entity.ToList().ForEach(p => result.Add(mapper.Map<Person, PersonDTO>(p)));
             return Ok(result);
         }
 
         [HttpPost]
         public IActionResult create(PersonDTO dto)
         {
-            return Ok(mapper.EntityToDTO(db.create(mapper.DTOToCreationArgument(dto))));
+            
+            return Ok(mapper.Map<Person, PersonDTO>(db.create(mapper.Map<PersonDTO, CreationPersonArgument>(dto))));
         }
 
         [HttpPut]
         public IActionResult update(PersonDTO dto)
         {
 
-            return Ok(db.update(mapper.DTOToUpdatingArgument(dto)));
+            return Ok(db.update(mapper.Map<PersonDTO, UpdatingPersonArgument>(dto)));
         }
 
         [HttpDelete("{id}")]

@@ -26,7 +26,7 @@ namespace Contacts.Service
                 lastName = argument.lastName,
                 middleName = argument.middleName,
                 phoneNumber = argument.phoneNumber,
-                Email = argument.Email,
+                Email = argument.email,
                 placeOfStudy = argument.placeOfStudy,
                 discord = argument.discord,
                 address = argument.address,

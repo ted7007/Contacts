@@ -28,3 +28,4 @@ C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\Contacts.genrunti
 C:\Users\ted70\source\repos\Contacts\Contacts\obj\Debug\net5.0\refint\Contacts.dll
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\appsettings.json
+C:\Users\ted70\source\repos\Contacts\Contacts\bin\Debug\net5.0\AutoMapper.dll

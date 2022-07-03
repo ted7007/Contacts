@@ -1,6 +1,7 @@
 ﻿using Contacts.Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,10 @@ namespace Contacts.Service.util
 {
     public class CreationPersonArgument
     {
+        [Required]
         public string firstName { get; set; }
 
+        [Required]
         public string lastName { get; set; }
 
         public string middleName { get; set; }
@@ -20,7 +23,8 @@ namespace Contacts.Service.util
 
         public DateTime birthday { get; set; }
 
-        public string Email { get; set; }
+        [Required]
+        public string email { get; set; }
 
         public string VKLink { get; set; }
 
