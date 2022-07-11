@@ -6,6 +6,7 @@ using Contacts.Model;
 using Contacts.Service;
 using Contacts.Service.util;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,14 +18,17 @@ namespace Contacts.Controller
     [ApiController]
     public class PersonController : ControllerBase
     {
-        private IPersonService db;
+        private IPersonService service;
 
         private IMapper mapper;
 
-        public PersonController(IPersonService service, IMapper mapper)
+        private ILogger logger;
+
+        public PersonController(IPersonService service, IMapper mapper, ILogger<PersonController> logger)
         {
-            db = service;
+            this.service = service;
             this.mapper = mapper;
+            this.logger = logger;
         }
 
         [HttpGet]
@@ -32,14 +36,16 @@ namespace Contacts.Controller
         {
             
             var result = new List<PersonDTO>();
-            db.findAllAndSort(sortState).ToList().ForEach(p => result.Add(mapper.Map<Person, PersonDTO>(p)));
+            service.findAllAndSort(sortState).ToList().ForEach(p => result.Add(mapper.Map<Person, PersonDTO>(p)));
+            logger.LogInformation($"request for findAll with parametres: sortState={ sortState}");
             return Ok(result);
         }
 
         [HttpGet("{id}")]
         public ActionResult find(int id)
         {
-            return Ok(mapper.Map<Model.Person, PersonDTO>(db.find(id)));
+            logger.LogInformation($"request for find with parametres: id={id}");
+            return Ok(mapper.Map<Model.Person, PersonDTO>(service.find(id)));
         }
 
         [HttpGet("find")]
@@ -63,30 +69,34 @@ namespace Contacts.Controller
                 workplace = workplace
             };
             List<PersonDTO> result = new List<PersonDTO>();
-            var entity = db.find(mapper.Map<PersonDTO, Model.Person>(dto));
+            var entity = service.find(mapper.Map<PersonDTO, Model.Person>(dto));
             entity.ToList().ForEach(p => result.Add(mapper.Map<Person, PersonDTO>(p)));
+            logger.LogInformation($"request for find with parametres: " + dto.toLog());
             return Ok(result);
         }
 
         [HttpPost]
         public IActionResult create(PersonDTO dto)
         {
-            
-            return Ok(mapper.Map<Person, PersonDTO>(db.create(mapper.Map<PersonDTO, CreationPersonArgument>(dto))));
+            logger.LogInformation($"request for create with parametres: " + dto.toLog());
+            return Ok(mapper.Map<Person, PersonDTO>(service.create(mapper.Map<PersonDTO, CreationPersonArgument>(dto))));
         }
 
         [HttpPut]
         public IActionResult update(PersonDTO dto)
         {
-
-            return Ok(db.update(mapper.Map<PersonDTO, UpdatingPersonArgument>(dto)));
+            logger.LogInformation($"request for update with parametres: " + dto.toLog());
+            return Ok(mapper.Map<Person,PersonDTO>(service.update(mapper.Map<PersonDTO, UpdatingPersonArgument>(dto))));
         }
 
         [HttpDelete("{id}")]
         public IActionResult delete(int? id)
         {
-            db.deleteById(id);
+            logger.LogInformation($"request for delete with parametres: " + id);
+            service.deleteById(id);
             return Ok();
         }
+        
+        
     }
 }

@@ -9,10 +9,8 @@ namespace Contacts.Service.util
 {
     public class CreationPersonArgument
     {
-        [Required]
         public string firstName { get; set; }
 
-        [Required]
         public string lastName { get; set; }
 
         public string middleName { get; set; }

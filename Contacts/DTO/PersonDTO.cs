@@ -12,7 +12,6 @@ namespace Contacts.DTO
         
         public string firstName { get; set; }
 
-        [Required]
         public string lastName { get; set; }
 
         public string middleName { get; set; }
@@ -60,6 +59,24 @@ namespace Contacts.DTO
             if (string.IsNullOrEmpty(dto.workplace))
                 return false;
             return true;
+        }
+        public string toLog()
+        {
+            var result =
+                $"id = {id}," +
+                $"firstName = {firstName},  " +
+                $"lastName = {lastName},    " +
+                $"middleName = {middleName}," +
+                $"sex = {sex},              " +
+                $"phoneNumber = {phoneNumber}," +
+                $"birthday = {birthday},    " +
+                $"email = {email},          " +
+                $"VKLink = {VKLink},        " +
+                $"discord = {discord},      " +
+                $"address = {address},      " +
+                $"placeOfStudy = {placeOfStudy}," +
+                $"workplace = {workplace}";
+            return result;
         }
     }
 }

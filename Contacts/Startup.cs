@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MySqlConnector;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +36,10 @@ namespace Contacts
         {
 
             string con = Configuration.GetConnectionString("DefaultConnection");
-                                                           
+
+            con = AddLoginConfig(con);
             // устанавливаем контекст данных
             services.AddDbContext<PersonContext>(options => options.UseMySql(con, new MySqlServerVersion(new Version(8,0,24))));
-            
-            
 
             //Отключение корс
             services.AddCors(options =>
@@ -48,8 +49,7 @@ namespace Contacts
                     policy.WithOrigins("http://localhost:3000");
                 });
             });
-            
-            
+            services.AddLogging();
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IMapper, PersonMapper>();
 
@@ -68,13 +68,25 @@ namespace Contacts
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseSerilogRequestLogging();
             app.UseRouting();
-
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
+
+        private string AddLoginConfig(string connectionString)
+        {
+            Console.WriteLine("Input connect to db data:");
+            Console.Write("Username: ");
+            string username = Console.ReadLine();
+            Console.Write("Password: ");
+            string password = Console.ReadLine();
+            connectionString += $"password={password};user id={username};";
+            return connectionString;
+        }
+
     }
 }
