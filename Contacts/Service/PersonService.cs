@@ -32,7 +32,7 @@ namespace Contacts.Service
                 address = argument.address,
                 birthday = argument.birthday,
                 sex = argument.sex,
-                VKLink = argument.VKLink,
+                vkLink = argument.VKLink,
                 workplace = argument.workplace
             };
             var result = db.Add(person).Entity;
@@ -78,7 +78,7 @@ namespace Contacts.Service
             && (person.address == null || person.address.ToLower() == p.address.ToLower())
             && (person.discord == null || person.discord.ToLower() == p.discord.ToLower())
             && (person.birthday == default(DateTime) || person.birthday == p.birthday)
-            && (person.VKLink == null || person.VKLink.ToLower() == p.VKLink.ToLower())
+            && (person.vkLink == null || person.vkLink.ToLower() == p.vkLink.ToLower())
             && (person.Email == null || person.Email.ToLower() == p.Email.ToLower())
             && (person.placeOfStudy == null || person.placeOfStudy.ToLower() == p.placeOfStudy.ToLower())
             && (person.workplace == null || person.workplace.ToLower() == p.workplace.ToLower())
@@ -106,7 +106,7 @@ namespace Contacts.Service
                 address = argument.address,
                 birthday = argument.birthday,
                 sex = argument.sex,
-                VKLink = argument.VKLink,
+                vkLink = argument.VKLink,
                 workplace = argument.workplace
             };
             var result = db.Update(person).Entity;

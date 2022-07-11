@@ -24,7 +24,7 @@ namespace Contacts.DTO
 
         public string email { get; set; }
 
-        public string VKLink { get; set; }
+        public string vkLink { get; set; }
 
         public string discord { get; set; }
 
@@ -48,7 +48,7 @@ namespace Contacts.DTO
                 return false;
             if (string.IsNullOrEmpty(dto.email))
                 return false;
-            if (string.IsNullOrEmpty(dto.VKLink))
+            if (string.IsNullOrEmpty(dto.vkLink))
                 return false;
             if (string.IsNullOrEmpty(dto.discord))
                 return false;
@@ -71,7 +71,7 @@ namespace Contacts.DTO
                 $"phoneNumber = {phoneNumber}," +
                 $"birthday = {birthday},    " +
                 $"email = {email},          " +
-                $"VKLink = {VKLink},        " +
+                $"VKLink = {vkLink},        " +
                 $"discord = {discord},      " +
                 $"address = {address},      " +
                 $"placeOfStudy = {placeOfStudy}," +

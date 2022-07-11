@@ -62,7 +62,7 @@ namespace Contacts.Controller
                 sex = sex,
                 birthday = birthday,
                 email = email,
-                VKLink = VKLink,
+                vkLink = VKLink,
                 discord = discord,
                 address = address,
                 placeOfStudy = placeOfStudy,
