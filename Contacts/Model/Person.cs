@@ -23,7 +23,7 @@ namespace Contacts.Model
 
         public string Email { get; set; }
 
-        public string VKLink { get; set; }
+        public string vkLink { get; set; }
 
         public string discord { get; set; }
 

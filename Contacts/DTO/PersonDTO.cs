@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace Contacts.DTO
     public class PersonDTO
     {
         public int? id { get; set; }
-
+        
         public string firstName { get; set; }
 
         public string lastName { get; set; }
@@ -23,7 +24,7 @@ namespace Contacts.DTO
 
         public string email { get; set; }
 
-        public string VKLink { get; set; }
+        public string vkLink { get; set; }
 
         public string discord { get; set; }
 
@@ -47,7 +48,7 @@ namespace Contacts.DTO
                 return false;
             if (string.IsNullOrEmpty(dto.email))
                 return false;
-            if (string.IsNullOrEmpty(dto.VKLink))
+            if (string.IsNullOrEmpty(dto.vkLink))
                 return false;
             if (string.IsNullOrEmpty(dto.discord))
                 return false;
@@ -58,6 +59,24 @@ namespace Contacts.DTO
             if (string.IsNullOrEmpty(dto.workplace))
                 return false;
             return true;
+        }
+        public string toLog()
+        {
+            var result =
+                $"id = {id}," +
+                $"firstName = {firstName},  " +
+                $"lastName = {lastName},    " +
+                $"middleName = {middleName}," +
+                $"sex = {sex},              " +
+                $"phoneNumber = {phoneNumber}," +
+                $"birthday = {birthday},    " +
+                $"email = {email},          " +
+                $"VKLink = {vkLink},        " +
+                $"discord = {discord},      " +
+                $"address = {address},      " +
+                $"placeOfStudy = {placeOfStudy}," +
+                $"workplace = {workplace}";
+            return result;
         }
     }
 }
